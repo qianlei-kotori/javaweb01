@@ -2,14 +2,14 @@ package com.ql.bean;
 
 import java.io.Serializable;
 
-public class Course implements Serializable{
+public class CourseChoice implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer cid;
 	private String cname;
 	private String croom;
 	private Integer ccount;
 	private Integer cum;
-	private String ctime;
+	private String tname;
 	public Integer getCid() {
 		return cid;
 	}
@@ -40,25 +40,24 @@ public class Course implements Serializable{
 	public void setCum(Integer cum) {
 		this.cum = cum;
 	}
-	public String getCtime() {
-		return ctime;
+	public String getTname() {
+		return tname;
 	}
-	public void setCtime(String ctime) {
-		this.ctime = ctime;
+	public void setTname(String tname) {
+		this.tname = tname;
 	}
-	public Course(Integer cid, String cname, String croom, Integer ccount, Integer cum, String ctime) {
+	public CourseChoice(Integer cid, String cname, String croom, Integer ccount, Integer cum, String tname) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
 		this.croom = croom;
 		this.ccount = ccount;
 		this.cum = cum;
-		this.ctime = ctime;
+		this.tname = tname;
 	}
-	public Course() {
+	public CourseChoice() {
 		super();
 	}
-
 	
 	
 }

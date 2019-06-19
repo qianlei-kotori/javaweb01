@@ -2,20 +2,12 @@ package com.ql.bean;
 
 import java.io.Serializable;
 
-public class Course implements Serializable{
+public class CourseTable implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private Integer cid;
 	private String cname;
 	private String croom;
-	private Integer ccount;
-	private Integer cum;
+	private String tname;
 	private String ctime;
-	public Integer getCid() {
-		return cid;
-	}
-	public void setCid(Integer cid) {
-		this.cid = cid;
-	}
 	public String getCname() {
 		return cname;
 	}
@@ -28,17 +20,11 @@ public class Course implements Serializable{
 	public void setCroom(String croom) {
 		this.croom = croom;
 	}
-	public Integer getCcount() {
-		return ccount;
+	public String getTname() {
+		return tname;
 	}
-	public void setCcount(Integer ccount) {
-		this.ccount = ccount;
-	}
-	public Integer getCum() {
-		return cum;
-	}
-	public void setCum(Integer cum) {
-		this.cum = cum;
+	public void setTname(String tname) {
+		this.tname = tname;
 	}
 	public String getCtime() {
 		return ctime;
@@ -46,19 +32,15 @@ public class Course implements Serializable{
 	public void setCtime(String ctime) {
 		this.ctime = ctime;
 	}
-	public Course(Integer cid, String cname, String croom, Integer ccount, Integer cum, String ctime) {
+	public CourseTable(String cname, String croom, String tname, String ctime) {
 		super();
-		this.cid = cid;
 		this.cname = cname;
 		this.croom = croom;
-		this.ccount = ccount;
-		this.cum = cum;
+		this.tname = tname;
 		this.ctime = ctime;
 	}
-	public Course() {
+	public CourseTable() {
 		super();
 	}
-
-	
 	
 }

@@ -29,10 +29,10 @@
 					 <a href="havechosen">已选课程</a>
 				</li>
 				<li>
-					 <a href="/course_list">成绩</a>
+					 <a href="scoresearch">成绩</a>
 				</li>
 				<li>
-					 <a href="/course_list">课程表</a>
+					 <a href="coursetable">课程表</a>
 				</li>
 			</ul>
 		</div>
@@ -49,8 +49,8 @@
 				<div class="col-md-6 column">
 					 <a href="#" class="btn btn-danger disabled">课程信息</a>
 				</div>
-				<div class="col-md-6 column">              
-						<p style="color:red;font-size:50px;">${err}</p>              
+				<div class="col-md-6 column">
+						<p style="color:red;font-size:30px;">${err}</p>               
 				</div>
 			</div>
 			<div class="row clearfix">

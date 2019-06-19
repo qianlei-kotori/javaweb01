@@ -23,7 +23,7 @@
 				</div>
 			</div> 
 			<div class="clearfix" style="margin-top: 2%">
-				<form action="login" method="post">
+				<form action="login"  method="post">
 					<div id="box"  style="width: 70%;margin: auto;">
 						<div  class="input-group col-md-12">
 							<span style="color: white;font-size: 60px;">账&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
