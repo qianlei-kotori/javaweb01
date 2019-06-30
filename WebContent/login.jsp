@@ -5,67 +5,61 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-			<title>登录</title>
-			<link rel="stylesheet" type="text/css" href="${css}/reset.css">
-            <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css" />
-            <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
-            <script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.js" ></script>
-            <script type="text/javascript" src="${js}/jquery-2.2.3.min.js" ></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<title>教务管理系统-登录</title>
+	    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+	    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+	    <link href="css/animate.css" rel="stylesheet">
+	    <link href="css/style.css" rel="stylesheet">
+	    <link href="css/login.css" rel="stylesheet">
+	    <!--[if lt IE 9]>
+	    <meta http-equiv="refresh" content="0;ie.html" />
+	    <![endif]-->
+	    <script>
+	        if (window.top !== window.self) {
+	            window.top.location = window.location;
+	        }
+	    </script>
 	</head>
-<body>
-		<div id="login"style="margin-top: 10%">
-			<div class="clearfix">
-				<div class="col-md-12">
-					<div class="title" style="margin: auto;overflow: hidden;">
-						<p style="text-align: center;color: white;font-size: 150px;margin-bottom: 0;">Welcome</p>
-						<p style="text-align: center;color: white;font-size: 70px;margin-top: 0;">家里蹲教务管理系统</p>
-					</div>
-				</div>
-			</div> 
-			<div class="clearfix" style="margin-top: 2%">
-				<form action="login"  method="post">
-					<div id="box"  style="width: 70%;margin: auto;">
-						<div  class="input-group col-md-12">
-							<span style="color: white;font-size: 60px;">账&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
-							<input type="text" name="acount" style="background-color: rgba(0,0,0,0);border:none;width: 50%;height: 60px;font-size: 60px;outline: none;color: white;">
-							<div class="row"></div>
-							<br>
-						</div>
-						<div  class="input-group col-md-12" style="margin-top: 5%;">
-							<span style="color: white;font-size: 60px;">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
-							<input type="password" name="apwd" style="background-color: rgba(0,0,0,0);border:none;width: 50%;height: 60px;font-size: 60px;outline: none;color: white;">
-							<img src="img/icon-invisible.gif" onclick="tu(this)"/>
-							<div class="row"></div>
-						</div>
-						<div class="input-group col-md-12"style="margin-top: 5%;">
-							<span style="color: white;font-size: 60px;">验证码：</span>
-							<input type="text" name="verifyfile" style="background-color: rgba(0,0,0,0);border:none;width: 50%;height: 60px;font-size: 60px;outline: none;color: white;">
-							<div class="row"></div>
-						</div>
-						<img  src="/ad/verifycode/" alt="加载失败">
-						<h1 style = "color:white;text-align:center">${failMsg}</h1>
-						<div class="input-group col-md-12 btn-group btn-group-lg" style="margin: auto;margin-top: 5%;width: 70%;">
-							<input class="btn btn-primary" style="width: 100%;height: 150px;border-radius: 75px;font-size: 90px;color: white;background-color: #FF0000;" type="submit" value="登录">
-						</div>
-					</div>    
-				</form>
-			</div>
-		</div>
-</body>
-<script>
-	var flag = false;
-	function tu(e){
-		if (!flag) {
-			var src1 = 'img/icon-visible.gif';
-			e.setAttribute("src",src1);
-			e.previousElementSibling.type="text";
-			flag=true;
-		} else{
-			var src1 = 'img/icon-invisible.gif';
-			e.setAttribute("src",src1);
-			e.previousElementSibling.type="password";
-			flag=false;
-		}
-	}
-</script>
+	<body class="signin">
+	<div class="signinpanel">
+	    <div class="row">
+	        <div class="col-sm-7">
+	            <div class="signin-info">
+	                <div class="logopanel m-b">
+	                    <h1>教务管理系统</h1>
+	                </div>
+	                <div class="m-b"></div>
+	                <h4>欢迎使用 <strong>教务管理系统</strong></h4>
+	                <ul class="m-b">
+	                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
+	                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
+	                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势三</li>
+	                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
+	                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
+	                </ul>
+	                <strong>还没有账号？ <a href="register.jsp">立即注册»</a></strong>
+	            </div>
+	        </div>
+	        <div class="col-sm-5">
+	            <form method="post" action="/login.action">
+	                <h4 class="no-margins">登录：</h4>
+	                <p class="m-t-md">登录到教务管理系统</p>
+	                <input type="text" class="form-control uname" placeholder="用户名" name="a_name">
+	                <input type="password" class="form-control pword m-b" placeholder="密码" name="a_password">
+	                <a href="">忘记密码了？</a>
+	                <input class="btn btn-success btn-block" type="submit" value="登录">
+	            </form>
+	        </div>
+	    </div>
+	    <div class="signup-footer">
+	        <div class="pull-left">
+	            © 2015 All Rights Reserved. 教务管理系统
+	        </div>
+	    </div>
+	</div>
+	</body>
 </html>
+		
