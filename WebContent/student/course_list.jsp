@@ -10,8 +10,8 @@
 		<link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css" />
 		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
 		<script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.js" ></script>
-		<script type="text/javascript" src="js/jquery-2.2.3.min.js" ></script>
-		<script type="text/javascript" src="js/jquery.rapid.js" ></script>
+		<script type="text/javascript" src="${js}/jquery-2.2.3.min.js" ></script>
+		<script type="text/javascript" src="${js}/jquery.rapid.js" ></script>
 		<title>课程表</title>
 	</head>
 	<style>
@@ -25,16 +25,16 @@
 		<div class="col-md-12 column">
 			<ul class="nav nav-tabs">
 				<li>
-					 <a href="StudentModel">所有课程</a>
+					 <a href="StudentModel?action=searchcourse">所有课程</a>
 				</li>
 				<li >
-					 <a href="havechosen">已选课程</a>
+					 <a href="StudentModel?action=havechosen">已选课程</a>
 				</li>
 				<li>
-					 <a href="scoresearch">成绩</a>
+					 <a href="StudentModel?action=score">成绩</a>
 				</li>
 				<li class="active">
-					 <a href="coursetable">课程表</a>
+					 <a href="StudentModel?action=coursetable">课程表</a>
 				</li>
 			</ul>
 		</div>
@@ -52,7 +52,7 @@
 					 <a href="#" class="btn btn-danger disabled">每周课程</a>
 				</div>
 				<div class="col-md-6 column">              
-						<a href="editstudent" class="btn btn-default">修改个人信息</a>              
+						<a href="StudentModel?action=editstudent" class="btn btn-default">修改个人信息</a>              
 				</div>
 			</div>
 			<div class="row clearfix">

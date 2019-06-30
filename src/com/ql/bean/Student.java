@@ -58,5 +58,14 @@ public class Student implements Serializable{
 	public Student() {
 		super();
 	}
+	public Student(Integer sid, String spwd, String ssex, String sroom, String scollege) {
+		super();
+		this.sid = sid;
+		this.spwd = spwd;
+		this.ssex = ssex;
+		this.sroom = sroom;
+		this.scollege = scollege;
+	}
+	
 	
 }

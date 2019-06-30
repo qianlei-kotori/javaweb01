@@ -1,11 +1,6 @@
 package com.ql.servelt;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ql.bean.CourseChoice;
+import com.ql.bean.CourseTable;
+import com.ql.bean.Score;
+import com.ql.bean.Student;
+import com.ql.dao.StudentDao;
+import com.ql.implJdbc.StudentJdbc;
+import com.ql.service.StudentService;
 
 
 /**
@@ -22,7 +23,8 @@ import com.ql.bean.CourseChoice;
 @WebServlet("/StudentModel")
 public class StudentModel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	StudentDao studentDao = new StudentJdbc();  
+	StudentService studentService = new StudentService();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,39 +39,64 @@ public class StudentModel extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		 String sid = String.valueOf(request.getSession().getAttribute("acount")) ;
-		 List<CourseChoice> list = studentcourse(sid);
-		 request.setAttribute("course", list);
-		 request.getRequestDispatcher("coursechoice.jsp").forward(request, response);		 
-	}
-
-	private List<CourseChoice> studentcourse(String sid) {
-		// TODO Auto-generated method stub
-		List<CourseChoice> list = null;
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","scott","admin");
-			PreparedStatement ps = con.prepareStatement("select a.cid,a.cname,a.croom,a.ccount,a.cum,b.tname from course a,teacher b,course_tid c "
-					+ "where b.tid=c.teacher_sid and a.cid=c.course_cid and b.tcollege = "
-					+ "(select scollege from student where sid = ?)");
-			ps.setObject(1, sid);
-			ResultSet resultSet = ps.executeQuery();
-			list = new ArrayList<CourseChoice>();
-			while(resultSet.next()){
-				CourseChoice coursechoice = new CourseChoice();
-				coursechoice.setCid(resultSet.getInt("cid"));
-				coursechoice.setCname(resultSet.getString("cname"));
-				coursechoice.setCroom(resultSet.getString("croom"));
-				coursechoice.setCcount(resultSet.getInt("ccount"));
-				coursechoice.setCum(resultSet.getInt("cum"));
-				coursechoice.setTname(resultSet.getString("tname"));
-				list.add(coursechoice);
+		 String action = request.getParameter("action");
+		switch (action) {
+		case "searchcourse":
+			String search = request.getParameter("search");
+			List<CourseChoice> list1 = studentService.searchcourse(sid,search);
+			request.setAttribute("course", list1);
+			request.getRequestDispatcher("student/coursechoice.jsp").forward(request, response);
+			break;
+		case "havechosen":
+			List<CourseChoice> list2 = studentService.searchhavechosen(sid);
+			request.setAttribute("course", list2);
+			request.getRequestDispatcher("student/havechosen.jsp").forward(request, response);
+			break;
+		case "score":
+			List<Score> list3 = studentService.score(sid);
+			request.setAttribute("score", list3);
+		    request.getRequestDispatcher("student/scoresearch.jsp").forward(request, response);
+		    break;
+		case "coursetable":
+			List<CourseTable> list4 = studentService.coursetable(sid);
+			request.setAttribute("course", list4);
+			request.getRequestDispatcher("student/course_list.jsp").forward(request, response);
+			break;
+		case "editstudent":
+			Student student = studentService.findstudent(sid);
+			request.setAttribute("student", student);
+			request.getRequestDispatcher("student/editstudent.jsp").forward(request, response);
+			break;
+		case "toeditstudent":
+			int sid2 = Integer.valueOf(sid);
+			String spwd = request.getParameter("spwd");
+			String sroom = request.getParameter("sroom");
+			String ssex = request.getParameter("ssex");
+			String scollege = request.getParameter("scollege");
+			Student student2 = new Student(sid2, spwd, ssex, sroom, scollege);
+			studentService.toeditstudent(student2);
+			response.sendRedirect("StudentModel?action=havechosen");
+			break;
+		case "addcourse":
+			String err = "";
+			String cid = request.getParameter("cid");
+			String geterr = studentService.addcourse(cid, sid);
+			if(geterr.equals("")){
+				studentService.updatecount(cid);
+				response.sendRedirect("StudentModel?action=havechosen");
+			}else{
+				// TODO Auto-generated catch block
+				request.setAttribute("err", geterr);
+				request.getRequestDispatcher("StudentModel?action=searchcourse").forward(request, response);
 			}
-			return list;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			break;
+		case "deletecourse":
+			String cid2 = request.getParameter("cid");
+			studentService.deletecourse(sid, cid2);
+			response.sendRedirect("StudentModel?action=havechosen");
 		}
-		return list;
+		
+				 
 	}
 
 	/**

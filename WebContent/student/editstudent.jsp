@@ -22,8 +22,7 @@
 			</div>
 		</div>
 	</div>
-            <form class="form-horizontal" action="toeditstudent" method="post">
-		    <c:forEach items="${student}" var="student">
+            <form class="form-horizontal" action="StudentModel?action=toeditstudent" method="post">
 		    <div class="row clearfix">
 				<div class="col-md-12 column" >
 						<span class="label label-default" for="sid" >学号</span>
@@ -71,8 +70,7 @@
 						</select>
 					</div>
 					</div>
-			</div>
-						</c:forEach>			
+			</div>		
 				<div class="col-md-12 column">
 					 <input type="submit"  class="btn btn-danger btn-lg btn-block" name="pic" value="提交">
 				</div>

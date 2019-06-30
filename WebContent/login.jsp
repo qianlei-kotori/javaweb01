@@ -6,11 +6,11 @@
 	<head>
 		<meta charset="UTF-8">
 			<title>登录</title>
-			<link rel="stylesheet" type="text/css" href="css/reset.css">
+			<link rel="stylesheet" type="text/css" href="${css}/reset.css">
             <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css" />
             <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
             <script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.js" ></script>
-            <script type="text/javascript" src="js/jquery-2.2.3.min.js" ></script>
+            <script type="text/javascript" src="${js}/jquery-2.2.3.min.js" ></script>
 	</head>
 <body>
 		<div id="login"style="margin-top: 10%">

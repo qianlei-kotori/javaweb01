@@ -1,9 +1,6 @@
 package com.ql.bean;
 
-import java.io.Serializable;
-
-public class CourseChoice implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class CourseChoice{
 	private Integer cid;
 	private String cname;
 	private String croom;
@@ -58,6 +55,5 @@ public class CourseChoice implements Serializable{
 	public CourseChoice() {
 		super();
 	}
-	
 	
 }

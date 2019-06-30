@@ -8,8 +8,8 @@
 		<link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css" />
 		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
 		<script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.js" ></script>
-		<script type="text/javascript" src="js/jquery-2.2.3.min.js" ></script>
-		<script type="text/javascript" src="js/jquery.rapid.js" ></script>
+		<script type="text/javascript" src="${js}/jquery-2.2.3.min.js" ></script>
+		<script type="text/javascript" src="${js}/jquery.rapid.js" ></script>
 		<title>学生选课</title>
 	</head>
 	<style>
@@ -22,17 +22,17 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<ul class="nav nav-tabs">
-				<li>
-					 <a href="StudentModel">所有课程</a>
-				</li>
 				<li class="active">
-					 <a href="havechosen">已选课程</a>
+					 <a href="StudentModel?action=searchcourse">所有课程</a>
+				</li>
+				<li >
+					 <a href="StudentModel?action=havechosen">已选课程</a>
 				</li>
 				<li>
-					 <a href="scoresearch">成绩</a>
+					 <a href="StudentModel?action=score">成绩</a>
 				</li>
 				<li>
-					 <a href="coursetable">课程表</a>
+					 <a href="StudentModel?action=coursetable">课程表</a>
 				</li>
 			</ul>
 		</div>
@@ -43,14 +43,21 @@
                         CourseChoice Table <small>选课表</small>
 				</h1>
 		<div class="panel panel-danger">
-        <div class="panel-heading">已选课表<i class="fa fa-thumb-tack pull-right"></i></div>
+        <div class="panel-heading">
+        <form action="StudentModel?action=searchcourse" method="post">
+        	选课表
+        	<i class="fa fa-search"><input name="search" type="text"></i>
+        	<input type="submit" value="查询">
+        	 <i class="fa fa-thumb-tack pull-right"></i>
+        </form>  
+        </div>
         <div class="panel-body">
 			<div class="row clearfix">
 				<div class="col-md-6 column">
 					 <a href="#" class="btn btn-danger disabled">课程信息</a>
 				</div>
-				<div class="col-md-6 column">              
-						<a href="editstudent" class="btn btn-default">修改个人信息</a>              
+				<div class="col-md-6 column">
+						<p style="color:red;font-size:30px;">${err}</p>               
 				</div>
 			</div>
 			<div class="row clearfix">
@@ -76,7 +83,7 @@
 								<td>${course.cum}</td>
 								<td>${course.tname}</td>
 								<td>
-									<a onclick="deletecourse('${course.cid}')" class="btn btn-danger"><i class="	fa fa-trash"></i>&nbsp;退课</a>
+									<a onclick="add('${course.cid}')" class="btn btn-danger"><i class="	fa fa-plus-square"></i>&nbsp;选课</a>
 								</td>
 							</tr>
                        <c:if test="${empty  course}">
@@ -115,10 +122,10 @@
 
 	</body>
 	<script type="text/javascript">
-	function deletecourse(cid){
-		var flag = window.confirm("确定退选这门课吗？");
+	function add(cid){
+		var flag = window.confirm("确定选这门课吗？");
 		if(flag){
-			window.location.href="deletecourse?cid="+cid;
+			window.location.href="StudentModel?action=addcourse&cid="+cid;
 		}
 	}
 	</script>
